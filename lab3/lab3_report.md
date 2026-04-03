@@ -59,13 +59,13 @@ lab3/output_images/
 **Результат медианного фильтра 3×3**
 
 ```md
-![](output_images/01_median3x3.bmp)
+![](output_images/01_median3x3.png)
 ```
 
 **Разностное изображение**
 
 ```md
-![](output_images/01_diff.bmp)
+![](output_images/01_diff.png)
 ```
 
 #### Пример 2
@@ -78,13 +78,13 @@ lab3/output_images/
 **Результат медианного фильтра 3×3**
 
 ```md
-![](output_images/02_median3x3.bmp)
+![](output_images/02_median3x3.png)
 ```
 
 **Разностное изображение**
 
 ```md
-![](output_images/02_diff.bmp)
+![](output_images/02_diff.png)
 ```
 
 ### Вывод

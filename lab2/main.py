@@ -71,11 +71,11 @@ def process_image(input_path: Path, output_dir: Path, window_size: int = 3, t: f
     binary = bradley_roth_binarization(gray, window_size=window_size, t=t)
 
     stem = input_path.stem
-    gray_path = output_dir / f"{stem}_grayscale.bmp"
-    binary_path = output_dir / f"{stem}_binary_bradley.bmp"
+    gray_path = output_dir / f"{stem}_grayscale.png"
+    binary_path = output_dir / f"{stem}_binary_bradley.png"
 
-    Image.fromarray(gray, mode="L").save(gray_path, format="BMP")
-    Image.fromarray(binary, mode="L").save(binary_path, format="BMP")
+    Image.fromarray(gray, mode="L").save(gray_path, format="PNG")
+    Image.fromarray(binary, mode="L").save(binary_path, format="PNG")
 
     print(f"Обработано: {input_path.name}")
     print(f"  -> {gray_path.name}")

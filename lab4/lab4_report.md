@@ -65,31 +65,31 @@ lab4/output_images/
 **Полутоновое изображение**
 
 ```md
-![](output_images/01_gray.bmp)
+![](output_images/01_gray.png)
 ```
 
 **Градиентная матрица Gx**
 
 ```md
-![](output_images/01_gx.bmp)
+![](output_images/01_gx.png)
 ```
 
 **Градиентная матрица Gy**
 
 ```md
-![](output_images/01_gy.bmp)
+![](output_images/01_gy.png)
 ```
 
 **Градиентная матрица G**
 
 ```md
-![](output_images/01_g.bmp)
+![](output_images/01_g.png)
 ```
 
 **Бинаризованная матрица G**
 
 ```md
-![](output_images/01_g_binary.bmp)
+![](output_images/01_g_binary.png)
 ```
 
 #### Пример 2
@@ -102,31 +102,31 @@ lab4/output_images/
 **Полутоновое изображение**
 
 ```md
-![](output_images/02_gray.bmp)
+![](output_images/02_gray.png)
 ```
 
 **Градиентная матрица Gx**
 
 ```md
-![](output_images/02_gx.bmp)
+![](output_images/02_gx.png)
 ```
 
 **Градиентная матрица Gy**
 
 ```md
-![](output_images/02_gy.bmp)
+![](output_images/02_gy.png)
 ```
 
 **Градиентная матрица G**
 
 ```md
-![](output_images/02_g.bmp)
+![](output_images/02_g.png)
 ```
 
 **Бинаризованная матрица G**
 
 ```md
-![](output_images/02_g_binary.bmp)
+![](output_images/02_g_binary.png)
 ```
 
 ### Вывод

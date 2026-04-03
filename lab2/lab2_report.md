@@ -50,13 +50,13 @@ lab2/output_images/
 **Полутоновое изображение**
 
 ```md
-![](./output_images/01_grayscale.bmp)
+![](./output_images/01_grayscale.png)
 ```
 
 **Бинаризация Брэдли и Рота, окно 3×3**
 
 ```md
-![](./output_images/01_binary_bradley.bmp)
+![](./output_images/01_binary_bradley.png)
 ```
 
 #### Пример 2
@@ -69,13 +69,13 @@ lab2/output_images/
 **Полутоновое изображение**
 
 ```md
-![](./output_images/02_grayscale.bmp)
+![](./output_images/02_grayscale.png)
 ```
 
 **Бинаризация Брэдли и Рота, окно 3×3**
 
 ```md
-![](./output_images/02_binary_bradley.bmp)
+![](./output_images/02_binary_bradley.png)
 ```
 
 ### Вывод

@@ -81,11 +81,11 @@ def process_one_image(input_path: Path, output_dir: Path) -> None:
 
     stem = input_path.stem
 
-    filtered_path = output_dir / f"{stem}_median3x3.bmp"
-    diff_path = output_dir / f"{stem}_diff.bmp"
+    filtered_path = output_dir / f"{stem}_median3x3.png"
+    diff_path = output_dir / f"{stem}_diff.png"
 
-    Image.fromarray(filtered, mode="L").save(filtered_path, format="BMP")
-    Image.fromarray(diff, mode="L").save(diff_path, format="BMP")
+    Image.fromarray(filtered, mode="L").save(filtered_path, format="PNG")
+    Image.fromarray(diff, mode="L").save(diff_path, format="PNG")
 
     print(f"Обработано: {input_path.name}")
     print(f"  Тип: {'монохром' if mono else 'полутон'}")
@@ -94,8 +94,8 @@ def process_one_image(input_path: Path, output_dir: Path) -> None:
 
     if not mono and diff.max() < 30:
         enhanced = enhance_difference(diff, factor=10)
-        enhanced_path = output_dir / f"{stem}_diff_x10.bmp"
-        Image.fromarray(enhanced, mode="L").save(enhanced_path, format="BMP")
+        enhanced_path = output_dir / f"{stem}_diff_x10.png"
+        Image.fromarray(enhanced, mode="L").save(enhanced_path, format="PNG")
         print(f"  -> {enhanced_path.name} (усиленная разность)")
 
 

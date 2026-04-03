@@ -96,19 +96,19 @@ def process_one_image(input_path: Path, output_dir: Path, threshold: int) -> Non
 
     stem = input_path.stem
 
-    original_path = output_dir / f"{stem}_original.bmp"
-    gray_path = output_dir / f"{stem}_gray.bmp"
-    gx_path = output_dir / f"{stem}_gx.bmp"
-    gy_path = output_dir / f"{stem}_gy.bmp"
-    g_path = output_dir / f"{stem}_g.bmp"
-    binary_path = output_dir / f"{stem}_g_binary.bmp"
+    original_path = output_dir / f"{stem}_original.png"
+    gray_path = output_dir / f"{stem}_gray.png"
+    gx_path = output_dir / f"{stem}_gx.png"
+    gy_path = output_dir / f"{stem}_gy.png"
+    g_path = output_dir / f"{stem}_g.png"
+    binary_path = output_dir / f"{stem}_g_binary.png"
 
-    original_rgb.save(original_path, format="BMP")
-    Image.fromarray(gray, mode="L").save(gray_path, format="BMP")
-    Image.fromarray(gx_norm, mode="L").save(gx_path, format="BMP")
-    Image.fromarray(gy_norm, mode="L").save(gy_path, format="BMP")
-    Image.fromarray(g_norm, mode="L").save(g_path, format="BMP")
-    Image.fromarray(g_binary, mode="L").save(binary_path, format="BMP")
+    original_rgb.save(original_path, format="PNG")
+    Image.fromarray(gray, mode="L").save(gray_path, format="PNG")
+    Image.fromarray(gx_norm, mode="L").save(gx_path, format="PNG")
+    Image.fromarray(gy_norm, mode="L").save(gy_path, format="PNG")
+    Image.fromarray(g_norm, mode="L").save(g_path, format="PNG")
+    Image.fromarray(g_binary, mode="L").save(binary_path, format="PNG")
 
     print(f"Обработано: {input_path.name}")
     print(f"  -> {original_path.name}")
