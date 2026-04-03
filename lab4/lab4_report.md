@@ -58,76 +58,52 @@ lab4/output_images/
 #### Пример 1
 **Исходное изображение**
 
-```md
 ![](../input_zhest/01.png)
-```
 
 **Полутоновое изображение**
 
-```md
-![](output_images/01_gray.png)
-```
+![](./output_images/01_gray.png)
 
 **Градиентная матрица Gx**
 
-```md
-![](output_images/01_gx.png)
-```
+![](./output_images/01_gx.png)
 
 **Градиентная матрица Gy**
 
-```md
-![](output_images/01_gy.png)
-```
+![](./output_images/01_gy.png)
 
 **Градиентная матрица G**
 
-```md
-![](output_images/01_g.png)
-```
+![](./output_images/01_g.png)
 
 **Бинаризованная матрица G**
 
-```md
-![](output_images/01_g_binary.png)
-```
+![](./output_images/01_g_binary.png)
 
 #### Пример 2
 **Исходное изображение**
 
-```md
 ![](../input_zhest/02.png)
-```
 
 **Полутоновое изображение**
 
-```md
-![](output_images/02_gray.png)
-```
+![](./output_images/02_gray.png)
 
 **Градиентная матрица Gx**
 
-```md
-![](output_images/02_gx.png)
-```
+![](./output_images/02_gx.png)
 
 **Градиентная матрица Gy**
 
-```md
-![](output_images/02_gy.png)
-```
+![](./output_images/02_gy.png)
 
 **Градиентная матрица G**
 
-```md
-![](output_images/02_g.png)
-```
+![](./output_images/02_g.png)
 
 **Бинаризованная матрица G**
 
-```md
-![](output_images/02_g_binary.png)
-```
+![](./output_images/02_g_binary.png)
 
 ### Вывод
 В ходе лабораторной работы было выполнено выделение контуров на изображении с помощью оператора Собеля 3×3. Использование матриц `Gx` и `Gy` позволило определить изменение яркости по горизонтальному и вертикальному направлениям, а вычисление `G = |Gx| + |Gy|` позволило получить итоговую карту контуров. Бинаризация матрицы `G` делает контуры более наглядными и удобными для последующего анализа.
