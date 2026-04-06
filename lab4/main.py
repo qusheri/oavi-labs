@@ -2,6 +2,7 @@ from pathlib import Path
 
 from PIL import Image
 import numpy as np
+from numpy.lib.stride_tricks import sliding_window_view
 
 
 SOBEL_GX = np.array([
@@ -15,6 +16,8 @@ SOBEL_GY = np.array([
     [ 0,  0,  0],
     [-1, -2, -1]
 ], dtype=np.int32)
+
+BINARY_THRESHOLD = 30
 
 
 def to_grayscale_weighted(rgb: np.ndarray) -> np.ndarray:
@@ -51,19 +54,16 @@ def convolve_3x3(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
     Граничные пиксели обрабатываются повторением ближайшего края.
     """
     h, w = image.shape
-    result = np.zeros((h, w), dtype=np.int32)
+    padded = np.pad(image, pad_width=1, mode="edge")
+    result = np.empty((h, w), dtype=np.int32)
+    kernel = kernel.astype(np.int32)
 
-    for y in range(h):
-        for x in range(w):
-            s = 0
-
-            for ky in range(-1, 2):
-                for kx in range(-1, 2):
-                    yy = min(max(y + ky, 0), h - 1)
-                    xx = min(max(x + kx, 0), w - 1)
-                    s += int(image[yy, xx]) * int(kernel[ky + 1, kx + 1])
-
-            result[y, x] = s
+    chunk_rows = 256
+    for y0 in range(0, h, chunk_rows):
+        y1 = min(h, y0 + chunk_rows)
+        padded_chunk = padded[y0:y1 + 2, :]
+        windows = sliding_window_view(padded_chunk, (3, 3)).astype(np.int32)
+        result[y0:y1] = np.tensordot(windows, kernel, axes=((2, 3), (0, 1)))
 
     return result
 
@@ -71,8 +71,10 @@ def convolve_3x3(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
 def threshold_binary(image: np.ndarray, threshold: int) -> np.ndarray:
     """
     Бинаризация по порогу.
+    Контуры делаем чёрными на белом фоне,
+    чтобы они были различимы в отчёте.
     """
-    return np.where(image >= threshold, 255, 0).astype(np.uint8)
+    return np.where(image >= threshold, 0, 255).astype(np.uint8)
 
 
 def process_one_image(input_path: Path, output_dir: Path, threshold: int) -> None:
@@ -92,7 +94,6 @@ def process_one_image(input_path: Path, output_dir: Path, threshold: int) -> Non
     gy_norm = normalize_to_255(gy_raw)
     g_norm = normalize_to_255(g_raw)
 
-    threshold = int(g_norm.max() * 0.18)
     g_binary = threshold_binary(g_norm, threshold)
     print(f"  Порог бинаризации G: {threshold}")
 
@@ -122,11 +123,12 @@ def process_one_image(input_path: Path, output_dir: Path, threshold: int) -> Non
 
 
 def main():
-    input_dir = Path("../input_zhest")
-    output_dir = Path("output_images")
+    base_dir = Path(__file__).resolve().parent
+    input_dir = (base_dir.parent / "input_zhest").resolve()
+    output_dir = base_dir / "output_images"
 
     allowed_ext = {".png", ".bmp"}
-    threshold = 100
+    threshold = BINARY_THRESHOLD
 
     if not input_dir.exists():
         print(f"Папка не найдена: {input_dir}")
@@ -134,10 +136,13 @@ def main():
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    files = [
-        p for p in input_dir.iterdir()
-        if p.is_file() and p.suffix.lower() in allowed_ext
-    ]
+    files = sorted(
+        [
+            p for p in input_dir.iterdir()
+            if p.is_file() and p.suffix.lower() in allowed_ext
+        ],
+        key=lambda path: path.name,
+    )
 
     if not files:
         print("Подходящие изображения не найдены.")
