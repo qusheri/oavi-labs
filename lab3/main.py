@@ -81,9 +81,12 @@ def process_one_image(input_path: Path, output_dir: Path) -> None:
 
     stem = input_path.stem
 
+    original_path = output_dir / f"{stem}_original.png"
     filtered_path = output_dir / f"{stem}_median3x3.png"
     diff_path = output_dir / f"{stem}_diff.png"
+    diff_x10_path = output_dir / f"{stem}_diff_x10.png"
 
+    Image.fromarray(src, mode="L").save(original_path, format="PNG")
     Image.fromarray(filtered, mode="L").save(filtered_path, format="PNG")
     Image.fromarray(diff, mode="L").save(diff_path, format="PNG")
 
@@ -92,11 +95,9 @@ def process_one_image(input_path: Path, output_dir: Path) -> None:
     print(f"  -> {filtered_path.name}")
     print(f"  -> {diff_path.name}")
 
-    if not mono and diff.max() < 30:
+    if not mono:
         enhanced = enhance_difference(diff, factor=10)
-        enhanced_path = output_dir / f"{stem}_diff_x10.png"
-        Image.fromarray(enhanced, mode="L").save(enhanced_path, format="PNG")
-        print(f"  -> {enhanced_path.name} (усиленная разность)")
+        Image.fromarray(enhanced, mode="L").save(diff_x10_path, format="PNG")
 
 
 def main():

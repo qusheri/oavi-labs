@@ -92,7 +92,9 @@ def process_one_image(input_path: Path, output_dir: Path, threshold: int) -> Non
     gy_norm = normalize_to_255(gy_raw)
     g_norm = normalize_to_255(g_raw)
 
+    threshold = int(g_norm.max() * 0.18)
     g_binary = threshold_binary(g_norm, threshold)
+    print(f"  Порог бинаризации G: {threshold}")
 
     stem = input_path.stem
 
