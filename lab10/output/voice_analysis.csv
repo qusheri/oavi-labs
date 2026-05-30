@@ -1,0 +1,4 @@
+﻿sample;min_frequency_hz;max_frequency_hz;formant_1_hz;formant_2_hz;formant_3_hz
+vowel_A;592.16;2519.38;699.83;710.60;721.36
+vowel_I;161.50;355.30;204.57;215.33;226.10
+extra_variant4_signal;355.30;2551.68;441.43;452.20;462.96
